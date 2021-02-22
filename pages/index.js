@@ -3,12 +3,11 @@ import { useEffect, useState } from 'react';
 import styles from '../styles/Home.module.css';
 
 export default function Home() {
-  const [text, setText] = useState('hi');
+  const [text, setText] = useState('hi\\nhow are you?');
 
   const [output, setOutput] = useState('');
 
   useEffect(() => {
-    console.log(text);
     setOutput(text.replaceAll('\\n', '\n'));
   }, [text]);
 
@@ -31,7 +30,13 @@ export default function Home() {
           onChange={(e) => setText(e.target.value)}
         ></textarea>
         <h3>Result:</h3>
-        <textarea readonly className={styles.display} value={output}></textarea>
+        <textarea
+          onInput={(e) => console.log(e)}
+          readonly
+          className={styles.display}
+          value={output}
+          rows={output.split('\n').length}
+        ></textarea>
       </main>
 
       <footer className={styles.footer}></footer>
